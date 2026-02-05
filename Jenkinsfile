@@ -9,7 +9,7 @@ pipeline{
     environment {
         APP_NAME = "devops-mega-project"
         RELEASE = "1.0.0"
-        DOCKER_USER = "mydevopsuser46"
+        DOCKER_USER = "sagarhursale12111"
         DOCKER_PASS = 'dockerhub'
         IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
         IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
@@ -121,7 +121,7 @@ pipeline{
           }
           failure {
               emailext (
-                  to: 'devopsstudy09@gmail.com',
+                  to: '',
                   subject: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
                   body: """<p>Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' failed.</p><p>Check console output at <a href='${env.BUILD_URL}'>${env.BUILD_URL}</a></p>""",
                   mimeType: 'text/html'

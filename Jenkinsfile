@@ -9,7 +9,7 @@ pipeline{
     environment {
         APP_NAME = "devops-mega-project"
         RELEASE = "1.0.0"
-        DOCKER_USER = "mydevopsuser46"
+        DOCKER_USER = "sagarhursale12111"
         DOCKER_PASS = 'dockerhub'
         IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
         IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
@@ -82,10 +82,10 @@ pipeline{
         // }
 
         // stage("Trivy Scan") {
-        //     steps {
-        //         script {
+        //  steps {
+        //     script {
 		//    sh ('docker run -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image mydevopsuser46/devops-mega-project:latest  --no-progress --scanners vuln  --exit-code 0 --severity HIGH,CRITICAL --format table')
-        //         }
+        //        }
         //     }
 
         // }
@@ -110,23 +110,23 @@ pipeline{
 
     }
 
-    // post {
-    //       success {
-    //           emailext (
-    //               to: 'sagarhursale92@gmail.com',
-    //               subject: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-    //               body: """<p>Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' succeeded.</p><p>Check console output at <a href='${env.BUILD_URL}'>${env.BUILD_URL}</a></p>""",
-    //               mimeType: 'text/html'
-    //           )
-    //       }
-    //       failure {
-    //           emailext (
-    //               to: 'sagarhursale92@gmail.com',
-    //               subject: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-    //               body: """<p>Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' failed.</p><p>Check console output at <a href='${env.BUILD_URL}'>${env.BUILD_URL}</a></p>""",
-    //               mimeType: 'text/html'
-    //            )
-    //     }
+    post {
+          success {
+              emailext (
+                  to: 'devopsstudy09@gmail.com',
+                  subject: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                  body: """<p>Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' succeeded.</p><p>Check console output at <a href='${env.BUILD_URL}'>${env.BUILD_URL}</a></p>""",
+                  mimeType: 'text/html'
+              )
+          }
+          failure {
+              emailext (
+                  to: 'devopsstudy09@gmail.com',
+                  subject: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                  body: """<p>Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' failed.</p><p>Check console output at <a href='${env.BUILD_URL}'>${env.BUILD_URL}</a></p>""",
+                  mimeType: 'text/html'
+               )
+        }
 
     //    }
 

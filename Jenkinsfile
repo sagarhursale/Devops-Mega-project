@@ -39,12 +39,12 @@ pipeline{
 
         }
 
-        // stage("Test the application"){
-        //     steps {
-        //        sh "mvn test"
-        //     }
+        stage("Test the application"){
+             steps {
+                sh "mvn test"
+             }
 
-        // }
+         }
 
         stage("Sonarqube Analysis") {
             steps {
@@ -81,14 +81,14 @@ pipeline{
 
         // }
 
-        // stage("Trivy Scan") {
-        //     steps {
-        //         script {
-		//    sh ('docker run -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image mydevopsuser46/devops-mega-project:latest  --no-progress --scanners vuln  --exit-code 0 --severity HIGH,CRITICAL --format table')
-        //         }
-        //     }
+         stage("Trivy Scan") {
+             steps {
+                 script {
+		    sh ('docker run -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image mydevopsuser46/devops-mega-project:latest  --no-progress --scanners vuln  --exit-code 0 --severity HIGH,CRITICAL --format table')
+                 }
+             }
 
-        // }
+         }
 
         stage ('Cleanup Artifacts') {
             steps {
@@ -110,24 +110,24 @@ pipeline{
 
     }
 
-    // post {
-    //       success {
-    //           emailext (
-    //               to: 'devopsstudy09@gmail.com',
-    //               subject: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-    //               body: """<p>Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' succeeded.</p><p>Check console output at <a href='${env.BUILD_URL}'>${env.BUILD_URL}</a></p>""",
-    //               mimeType: 'text/html'
-    //           )
-    //       }
-    //       failure {
-    //           emailext (
-    //               to: 'devopsstudy09@gmail.com',
-    //               subject: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-    //               body: """<p>Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' failed.</p><p>Check console output at <a href='${env.BUILD_URL}'>${env.BUILD_URL}</a></p>""",
-    //               mimeType: 'text/html'
-    //            )
-    //     }
+     post {
+           success {
+               emailext (
+                   to: 'sagarhursale92@gmail.com',
+                   subject: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                   body: """<p>Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' succeeded.</p><p>Check console output at <a href='${env.BUILD_URL}'>${env.BUILD_URL}</a></p>""",
+                   mimeType: 'text/html'
+               )
+           }
+           failure {
+               emailext (
+                   to: 'sagarhursale92@gmail.com',
+                  subject: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                   body: """<p>Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' failed.</p><p>Check console output at <a href='${env.BUILD_URL}'>${env.BUILD_URL}</a></p>""",
+                   mimeType: 'text/html'
+                )
+         }
 
-    //    }
+        }
 
 }
